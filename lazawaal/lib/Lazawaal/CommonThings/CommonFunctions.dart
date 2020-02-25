@@ -1,14 +1,19 @@
 
 import 'package:flutter/material.dart';
-
 import 'AllInstances.dart';
+class LazawaalCommonFunctions extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return Commonfunctions();
+  }
 
-class Commonfunctions {
+}
+class Commonfunctions extends State<LazawaalCommonFunctions> {
   Widget textFields(String validation, onChange, label, hint,
       {tType: TextInputType.text, obscuretext: true, controller, submit}) {
     return TextFormField(
       obscureText: obscuretext,
-      validator: (value) => value.isEmpty ? validation : "Required",
+      validator: (value) => value.isEmpty ? Text(validation) : validation="",
       onChanged: onChange,
       onFieldSubmitted: submit,
       controller: controller,
@@ -30,7 +35,11 @@ class Commonfunctions {
         style: TextStyle(
             fontSize: 20.0, fontWeight: FontWeight.w400, color: Colors.white),
       ),
-      color: Colors.grey,
+      shape:  RoundedRectangleBorder(
+          borderRadius: new BorderRadius.circular(18.0),
+          side: BorderSide(color: Colors.grey)
+      ),
+      color: Colors.grey ,
       elevation: 60.0,
     );
   }
@@ -63,6 +72,51 @@ class Commonfunctions {
     return Container(
       child: image,
     );
+  }
+
+   DatePicker (BuildContext context ) {
+    bool server1Selected;
+    DateTime selectedDate = DateTime.now();
+
+    Future _selectDate(BuildContext context) async {
+      final DateTime picked = await showDatePicker(
+          context: context,
+          initialDate: selectedDate,
+          firstDate: DateTime(1800, 8),
+          lastDate: DateTime(2101));
+      if (picked != null && picked != selectedDate)
+       {
+
+
+setState(() {
+    selectedDate = picked;
+
+  });
+
+
+      }
+      else {
+
+      }
+    }
+//    Text("${selectedDate.toLocal()}".split(' ')[0]);
+  return Column(
+    children: <Widget>[
+
+      Text("${selectedDate.toLocal()}".split(' ')[0]),
+      RaisedButton(
+        onPressed: () {
+          _selectDate(context);
+          print(selectedDate);
+
+        },
+        child: Text('Select Date'),
+
+      ),
+    ],
+
+
+  );
   }
 
   Widget myDrawer(BuildContext context) {
@@ -129,7 +183,7 @@ class Commonfunctions {
     );
   }
 
-  dialogBox(titleText, contextText, BuildContext context) {
+  dialogBox(titleText, contextText) {
     return showDialog(
         context: context,
         builder: (BuildContext context) {
@@ -155,6 +209,12 @@ class Commonfunctions {
             ],
           );
         });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    throw UnimplementedError();
   }
 }
 
