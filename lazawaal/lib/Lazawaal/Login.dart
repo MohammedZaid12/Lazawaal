@@ -10,28 +10,6 @@ import 'Authentication/LoginAuthentication.dart';
 
 
 
-Future doLogin (map , success ) async{
-  final response =await http.post(appUrls.loginUrl , body:map);
-
-  if (response.statusCode < 200 ||
-      response.statusCode > 400 ||
-      json == null) {
-    throw new Exception("Error while fetching data");
-  }
-    var  _resp = json.decode(response.body);
-
-  if(_resp["error"] == false){
-  var obj = LoginAuth.fromjson(_resp["data"]);
-  success(obj);
-  print(_resp["success"]);
-  print(obj);
-  return obj;
-  }
-  else{
-    cFunc.dialogBox("Error", _resp["error"]);
-  }
-}
-
 
 
 
@@ -51,6 +29,33 @@ class LoginState extends State<LazawaalLogin> {
   String username;
   String password;
   final _formKey = GlobalKey<FormState>();
+
+
+  Future doLogin (map , success ) async{
+    final response =await http.post(appUrls.loginUrl , body:map);
+
+    if (response.statusCode < 200 ||
+        response.statusCode > 400 ||
+        json == null) {
+      throw new Exception("Error while fetching data");
+    }
+    var  _resp = json.decode(response.body);
+
+    if(_resp["error"] == false){
+      var obj = LoginAuth.fromjson(_resp["data"]);
+      success(obj);
+      print(_resp["success"]);
+      print(obj);
+      return obj;
+    }
+    else{
+      print(_resp["error"]);
+      print("djfwo8yhid");
+
+
+      cFunc.dialogBox("Error", _resp["error"] ,context);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {

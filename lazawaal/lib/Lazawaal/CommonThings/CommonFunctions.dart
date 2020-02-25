@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'AllInstances.dart';
+import 'package:lazawaal/Lazawaal/Login.dart';
 class LazawaalCommonFunctions extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -74,7 +75,7 @@ class Commonfunctions extends State<LazawaalCommonFunctions> {
     );
   }
 
-   DatePicker (BuildContext context ) {
+   DatePicker (BuildContext context) {
     bool server1Selected;
     DateTime selectedDate = DateTime.now();
 
@@ -88,10 +89,9 @@ class Commonfunctions extends State<LazawaalCommonFunctions> {
        {
 
 
-setState(() {
+
     selectedDate = picked;
 
-  });
 
 
       }
@@ -183,18 +183,11 @@ setState(() {
     );
   }
 
-  dialogBox(titleText, contextText) {
+  dialogBox(titleText, contextText , BuildContext context) {
     return showDialog(
-        context: context,
+        context:  context,
         builder: (BuildContext context) {
-          return ListView(
-            children: <Widget>[
-              Visibility(
-                  child: Container(
-                    margin: EdgeInsets.only(bottom: 30),
-//                        child: CircularProgressIndicator()
-                  )),
-              AlertDialog(
+          return AlertDialog(
                 title: Text(titleText),
                 content: Text(contextText),
                 actions: [
@@ -204,8 +197,8 @@ setState(() {
                       Navigator.of(context).pop();
                     },
                   )
-                ],
-              )
+
+
             ],
           );
         });
