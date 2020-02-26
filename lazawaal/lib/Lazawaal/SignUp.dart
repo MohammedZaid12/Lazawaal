@@ -16,19 +16,15 @@ class LazawaalSignUp extends StatefulWidget {
 class SignUpState extends State<LazawaalSignUp> {
   final _formKey = GlobalKey<FormState>();
   DateTime selectedDate = DateTime.now();
-
+//
   Future<File> imageFile;
-//  String status = '';
-//  String base64Image;
 //
 
-  String errMessage = 'Error Uploading Image';
-
-  get source => null;
-
-  chooseImage() {
+//
+  pickImageFromGallery(ImageSource source) {
+    print("aa");
     setState(() {
-      imageFile = ImagePicker.pickImage(source: source) as Future<File>;
+      imageFile = ImagePicker.pickImage(source: source);
     });
   }
 
@@ -83,10 +79,12 @@ class SignUpState extends State<LazawaalSignUp> {
             ),
             Padding(
               padding: EdgeInsets.all(15.0),
-              child: OutlineButton(
-                onPressed: chooseImage,
-                child: Text('Choose Image'),
-              ),
+                child: RaisedButton(
+                  child: Text("Select Image from Gallery"),
+                  onPressed: () {
+                    pickImageFromGallery(ImageSource.gallery);
+                  },
+                ),
             ),
             Padding(
               padding: EdgeInsets.all(15.0),
