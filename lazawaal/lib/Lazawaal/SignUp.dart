@@ -1,8 +1,10 @@
+
 import 'package:flutter/material.dart';
 import 'package:lazawaal/Lazawaal/CommonThings/AllInstances.dart';
 import 'package:lazawaal/Lazawaal/CommonThings/AllControllers.dart';
 import 'package:lazawaal/Lazawaal/Login.dart';
-
+import 'package:image_picker/image_picker.dart';
+import 'dart:io';
 
 class LazawaalSignUp extends StatefulWidget {
   @override
@@ -13,62 +15,130 @@ class LazawaalSignUp extends StatefulWidget {
 
 class SignUpState extends State<LazawaalSignUp> {
   final _formKey = GlobalKey<FormState>();
-  DateTime selectedDate = DateTime.now() ;
+  DateTime selectedDate = DateTime.now();
+
+  Future<File> imageFile;
+//  String status = '';
+//  String base64Image;
+//
+
+  String errMessage = 'Error Uploading Image';
+
+  get source => null;
+
+  chooseImage() {
+    setState(() {
+      imageFile = ImagePicker.pickImage(source: source) as Future<File>;
+    });
+  }
+
+//
+//  startUpload() {
+//
+//    String fileName = tmpFile.path.split('/').last;
+//    upload(fileName);
+//  }
+
+//  upload(String fileName) {
+//    http.post(uploadEndPoint, body: {
+//      "image": base64Image,
+//      "name": fileName,
+//    }).then((result) {
+//      setStatus(result.statusCode == 200 ? result.body : errMessage);
+//    }).catchError((error) {
+//      setStatus(error);
+//    });
+//  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        key: _formKey,
+      key: _formKey,
       body: Form(
-        child:  ListView(
+        child: ListView(
           children: <Widget>[
-
             Padding(
               padding: EdgeInsets.all(15.0),
               child: cFunc.logoImageAdd(200.0, 100.0),
             ),
             Padding(
               padding: EdgeInsets.all(15.0),
-              child: cFunc.textFields("VALIDAION", (v){print(v);}, "Name", "Name" , obscuretext: false , controller: UsernameController),
+              child: cFunc.textFields("VALIDAION", (v) {
+                print(v);
+              }, "Name", "Name",
+                  obscuretext: false, controller: UsernameController),
             ),
-
             Padding(
               padding: EdgeInsets.all(15.0),
-              child: cFunc.textFields("a", (v){print(v);}, "Email", "Email" , tType: TextInputType.emailAddress),
-            ), Padding(
+              child: cFunc.textFields("a", (v) {
+                print(v);
+              }, "Email", "Email", tType: TextInputType.emailAddress),
+            ),
+            Padding(
               padding: EdgeInsets.all(15.0),
-              child: cFunc.textFields("a", (v){print(v);}, "Password", " Password" , obscuretext: true , controller: passController ),
-            ), Padding(
+              child: cFunc.textFields("a", (v) {
+                print(v);
+              }, "Password", " Password",
+                  obscuretext: true, controller: passController),
+            ),
+            Padding(
               padding: EdgeInsets.all(15.0),
-              child: cFunc.textFields("a", (v){print(v);}, "Phone Nuumber", "Phone Nuumber"  ,  tType: TextInputType.phone),
-            ), Padding(
+              child: OutlineButton(
+                onPressed: chooseImage,
+                child: Text('Choose Image'),
+              ),
+            ),
+            Padding(
               padding: EdgeInsets.all(15.0),
-              child: cFunc.textFields("a", (v){print(v);}, "NIC", "NIC" , tType: TextInputType.number ),
-            ), Padding(
+              child: cFunc.textFields("a", (v) {
+                print(v);
+              }, "Phone Nuumber", "Phone Nuumber", tType: TextInputType.phone),
+            ),
+            Padding(
               padding: EdgeInsets.all(15.0),
-              child: cFunc.DatePicker(context, selectedDate, (date){
+              child: cFunc.textFields("a", (v) {
+                print(v);
+              }, "Income", "Income", tType: TextInputType.number),
+            ),
+            Padding(
+              padding: EdgeInsets.all(15.0),
+              child: cFunc.textFields("a", (v) {
+                print(v);
+              }, "Guardian Name", "Guardian Name", tType: TextInputType.text),
+            ),
+            Padding(
+              padding: EdgeInsets.all(15.0),
+              child: cFunc.textFields("a", (v) {
+                print(v);
+              }, "Guardian Nic", "Guardian Nic", tType: TextInputType.number),
+            ),
+            Padding(
+              padding: EdgeInsets.all(15.0),
+              child: cFunc.textFields("a", (v) {
+                print(v);
+              }, "Guardian Contact", "Guardian Contact",
+                  tType: TextInputType.text),
+            ),
+            Padding(
+              padding: EdgeInsets.all(15.0),
+              child: cFunc.DatePicker(context, selectedDate, (date) {
                 setState(() {
                   selectedDate = date;
                 });
                 print(date);
               }),
             ),
-
             Padding(
                 padding: EdgeInsets.all(15.0),
-                child: cFunc.buttons("Sign Up", (){
-
-
-                })),
+                child: cFunc.buttons("Sign Up", () {})),
             Padding(
                 padding: EdgeInsets.all(15.0),
-                child: cFunc.buttons("Back To Login", (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => LazawaalLogin()));
+                child: cFunc.buttons("Back To Login", () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => LazawaalLogin()));
                 })),
-
           ],
         ),
-
-
       ),
     );
   }
