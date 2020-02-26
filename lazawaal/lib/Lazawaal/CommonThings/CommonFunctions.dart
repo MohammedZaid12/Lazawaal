@@ -75,31 +75,19 @@ class Commonfunctions extends State<LazawaalCommonFunctions> {
     );
   }
 
-   DatePicker (BuildContext context) {
-    bool server1Selected;
-    DateTime selectedDate = DateTime.now();
 
-    Future _selectDate(BuildContext context) async {
-      final DateTime picked = await showDatePicker(
-          context: context,
-          initialDate: selectedDate,
-          firstDate: DateTime(1800, 8),
-          lastDate: DateTime(2101));
-      if (picked != null && picked != selectedDate)
-       {
-
-
-
-    selectedDate = picked;
-
-
-
+   DatePicker (BuildContext context, selectedDate , success) {
+      Future _selectDate(BuildContext context) async {
+        final DateTime picked = await showDatePicker(
+            context: context,
+            initialDate: selectedDate,
+            firstDate: DateTime(1800, 8),
+            lastDate: DateTime(2101));
+        if (picked != null )
+         {
+           success(picked);
+        }
       }
-      else {
-
-      }
-    }
-//    Text("${selectedDate.toLocal()}".split(' ')[0]);
   return Column(
     children: <Widget>[
 
@@ -111,7 +99,6 @@ class Commonfunctions extends State<LazawaalCommonFunctions> {
 
         },
         child: Text('Select Date'),
-
       ),
     ],
 
@@ -183,10 +170,10 @@ class Commonfunctions extends State<LazawaalCommonFunctions> {
     );
   }
 
-  dialogBox(titleText, contextText , BuildContext context) {
+  dialogBox(BuildContext context, titleText, contextText  ) {
     return showDialog(
         context:  context,
-        builder: (BuildContext context) {
+        builder: (BuildContext buildContext) {
           return AlertDialog(
                 title: Text(titleText),
                 content: Text(contextText),

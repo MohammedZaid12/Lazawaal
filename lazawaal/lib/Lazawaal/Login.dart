@@ -5,7 +5,7 @@ import 'package:lazawaal/Lazawaal/CommonThings/AllControllers.dart';
 import 'package:lazawaal/Lazawaal/SignUp.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-
+import 'package:shared_preferences/shared_preferences.dart';
 import 'Authentication/LoginAuthentication.dart';
 
 
@@ -26,13 +26,14 @@ class LazawaalLogin extends StatefulWidget {
 }
 
 class LoginState extends State<LazawaalLogin> {
-  String username;
+  String email;
   String password;
+  String name;
   final _formKey = GlobalKey<FormState>();
 
 
   Future doLogin (map , success ) async{
-    final response =await http.post(appUrls.loginUrl , body:map);
+    final response =await http.post(appUrls.loginUrl , headers: tokenWithHeader.authWithTokenHeaders(""), body:map);
 
     if (response.statusCode < 200 ||
         response.statusCode > 400 ||
@@ -53,7 +54,7 @@ class LoginState extends State<LazawaalLogin> {
       print("djfwo8yhid");
 
 
-      cFunc.dialogBox("Error", _resp["error"] ,context);
+      cFunc.dialogBox( context,"Error", _resp["errorMessage"] );
     }
   }
 
@@ -70,7 +71,7 @@ class LoginState extends State<LazawaalLogin> {
     ),
     Padding(
     padding: EdgeInsets.all(15.0),
-    child: cFunc.textFields("VALIDAION", (v){this.setState(() {this.username=v ;});}, "User Name", "User Name" , obscuretext: false , controller: UsernameController),
+    child: cFunc.textFields("VALIDAION", (v){this.setState(() {this.email=v ;});}, "User Name", "User Name" , obscuretext: false , controller: UsernameController),
     ),
     Padding(
     padding: EdgeInsets.all(15.0),
@@ -79,12 +80,19 @@ class LoginState extends State<LazawaalLogin> {
 
             Padding(
     padding: EdgeInsets.all(15.0),
-    child: cFunc.buttons("Login", (){
+    child: cFunc.buttons("Login", ()async{
 
-      if(username!=""&&password!=""){
+      SharedPreferences loginPrefrence =
+          await SharedPreferences.getInstance();
+
+      if(email!=""&&password!=""){
         var map = new Map<String, dynamic>();
-        map["username"] = username.toString();
+        map["email"] = email.toString();
         map["password"] = password.toString();
+        map["name"] = name.toString();
+
+        loginPrefrence.setString(cKeys.email, map["email"]);
+        loginPrefrence.setString(cKeys.name, map["email"]);
 
         doLogin(map, (LoginAuth log){
           print("welcome");

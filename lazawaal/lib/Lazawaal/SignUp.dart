@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lazawaal/Lazawaal/CommonThings/AllInstances.dart';
 import 'package:lazawaal/Lazawaal/CommonThings/AllControllers.dart';
+import 'package:lazawaal/Lazawaal/Login.dart';
 
 
 class LazawaalSignUp extends StatefulWidget {
@@ -12,7 +13,7 @@ class LazawaalSignUp extends StatefulWidget {
 
 class SignUpState extends State<LazawaalSignUp> {
   final _formKey = GlobalKey<FormState>();
-
+  DateTime selectedDate = DateTime.now() ;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,16 +45,24 @@ class SignUpState extends State<LazawaalSignUp> {
               child: cFunc.textFields("a", (v){print(v);}, "NIC", "NIC" , tType: TextInputType.number ),
             ), Padding(
               padding: EdgeInsets.all(15.0),
-              child: cFunc.DatePicker(context ),
+              child: cFunc.DatePicker(context, selectedDate, (date){
+                setState(() {
+                  selectedDate = date;
+                });
+                print(date);
+              }),
             ),
-            Padding(
-                padding: EdgeInsets.all(15.0),
-                child: cFunc.buttons("Login", (){})),
+
             Padding(
                 padding: EdgeInsets.all(15.0),
                 child: cFunc.buttons("Sign Up", (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => LazawaalSignUp()));
 
+
+                })),
+            Padding(
+                padding: EdgeInsets.all(15.0),
+                child: cFunc.buttons("Back To Login", (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => LazawaalLogin()));
                 })),
 
           ],
