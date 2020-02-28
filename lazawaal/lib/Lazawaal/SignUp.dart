@@ -25,6 +25,7 @@ class SignUpState extends State<LazawaalSignUp> {
   File imageFile;
 
   Future doSignUp(String url, {Map body}) {
+
     return http
         .post(url,
             body: body, headers: tokenWithHeader.authWithTokenHeaders(""))

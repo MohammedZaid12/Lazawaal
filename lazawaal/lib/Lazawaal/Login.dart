@@ -22,8 +22,10 @@ class LoginState extends State<LazawaalLogin> {
   final _formKey = GlobalKey<FormState>();
 
   Future doLogin(map, success) async {
+    SharedPreferences Prefrence =
+    await SharedPreferences.getInstance();
     final response = await http.post(appUrls.loginUrl,
-        headers: tokenWithHeader.authWithTokenHeaders(""), body: map);
+        headers: tokenWithHeader.authWithTokenHeaders(Prefrence.getString(cKeys.token)), body: map);
 
     if (response.statusCode < 200 ||
         response.statusCode > 400 ||
