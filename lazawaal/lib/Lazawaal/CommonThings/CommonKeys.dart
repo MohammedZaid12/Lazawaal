@@ -2,6 +2,8 @@ class CommonKeys{
   final user_id ="user_id" ;
   final name ="name" ;
   final email ="email" ;
+  final token ="email" ;
+
 //  final picture ="picture" ;
   final authority_id ="authority_id" ;
   final authority_name ="authority_name" ;

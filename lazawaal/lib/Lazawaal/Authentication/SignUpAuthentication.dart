@@ -2,38 +2,56 @@
 
 
 import 'package:lazawaal/Lazawaal/Authentication/LoginAuthentication.dart';
+import 'package:lazawaal/Lazawaal/CommonThings/AllControllers.dart';
 
 class SignUpAuth{
-
+  final int Id;
+  final String userId;
   final String name;
   final String email;
   final String password;
-  final String picture;
-  final int phoneNumber;
-  final int income;
+
+  final String phoneNumber;
+  final String income;
   final String guardianName;
-  final int guardianContact;
-  final int guardianNic;
+  final String guardianContact;
+  final String guardianNic;
   final String DateOfBirth;
 
-  SignUpAuth({this.name, this.email , this.password , this.picture , this.phoneNumber , this.guardianName , this.guardianContact ,this.guardianNic , this.income , this.DateOfBirth});
+  SignUpAuth({this.name,this.Id ,this.userId ,this.email , this.password , this.phoneNumber , this.guardianName , this.guardianContact ,this.guardianNic , this.income , this.DateOfBirth});
 
 factory SignUpAuth.fromjson(Map<String, dynamic> json){
   return SignUpAuth(
+    userId: getString(json["user_id"]),
     name: getString(json['name']),
     email: getString(json['email']),
     password: getString(json['password']),
-    picture: getString(json['picture']),
-    phoneNumber: getInt(json['mobile']),
-    income: getInt(json['income']),
+
+    phoneNumber: getString(json['mobile']),
+    income: getString(json['income']),
     guardianName: getString(json['guardian_name']),
-    guardianContact: getInt(json['guardian_contact']),
-    guardianNic: getInt(json['guardian_nic']),
-    DateOfBirth: getString(json['dob']),
+    guardianContact: getString(json['guardian_contact']),
+    guardianNic: getString(json['guardian_nic']),
+    DateOfBirth: json['dob'],
    );
 
 
 }
+Map tomap(){
+  var map = new Map<String, dynamic>();
+  map["name"] = name;
+  map['userId'] = userId;
 
+  map["email"] = email;
+  map["password"] = password;
+  map["mobile"] = phoneNumber;
+  map["income"] = income;
+  map["guardian_name"] = guardianName;
+  map["guardian_contact"] = guardianContact;
+  map["guardian_nic"] = guardianNic;
+  map["dob"] = DateOfBirth;
+
+  return map;
+}
 
 }
