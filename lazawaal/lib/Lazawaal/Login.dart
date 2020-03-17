@@ -98,9 +98,9 @@ class LoginState extends State<LazawaalLogin> {
 
                   this.doLogin(map, (LoginAuth log) {
                     print(log.user_id);
-                    loginPrefrence.setString(cKeys.email, log.email);
+                    loginPrefrence.setString(cKeys.email, map["Email"]);
                     loginPrefrence.setBool("isLogin", true);
-                    loginPrefrence.setString(cKeys.token, log.token);
+                    loginPrefrence.setString(cKeys.token, map["Password"]);
 //                    loginPrefrence.setString(cKeys, log.email);
 
                   });
