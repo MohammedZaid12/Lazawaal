@@ -57,17 +57,17 @@ class UserCardState extends State<UserCard> {
                   Container(height: 200.0, width: 100.0,child:Column(children: <Widget>[Container(child: userImage(100.0, 100.0  ),),Container(padding: EdgeInsets.all(5.0),) , Row(children: <Widget>[Icon(Icons.loyalty , color: Colors.white,)  , Container(padding: EdgeInsets.only( right:3.0 ),) , Text("Loyality " , style: TextStyle(fontSize: 20.0 , color: Colors.white),),],) ,Container(padding: EdgeInsets.all(15.0),) ,Text("500", style: TextStyle(color: Colors.white , fontSize: 20.0)) ,], ) ),
                   VerticalDivider(color: Colors.white,
                     thickness: 2, width: 10,
+                ),Container(margin: EdgeInsets.only(top:20.0),),
+                  Container(height: 45.0, width: 100.0,margin: EdgeInsets.only(top: 47.0) , child: Column(children: <Widget>[Row(children: <Widget>[Icon(Icons.score, color: Colors.white,) , Container(padding: EdgeInsets.all(2.0),) , Text("Score" , style: TextStyle(fontSize: 20.0 , color: Colors.white))],) ,Container(  padding: EdgeInsets.all(3.0),     child:Text("500" , style: TextStyle(fontSize:   20.0 , color: Colors.white)))],),),
+ VerticalDivider(color: Colors.white,
+                    thickness: 2, width: 5.0,
                 ),
-                  Container(height: 25.0, width: 100.0,margin: EdgeInsets.only(top: 47.0) , child: Column(children: <Widget>[Row(children: <Widget>[Icon(Icons.score, color: Colors.white,) , Container(padding: EdgeInsets.all(2.0),) , Text("Score" , style: TextStyle(fontSize: 17.0 , color: Colors.white))],) ,Expanded(child:Text("500") , )],),),
-//                  VerticalDivider(color: Colors.white,),
-                  Container(height: 200.0, width: 150.0,child: Column(children: <Widget>[Row(children: <Widget>[  Container(margin: EdgeInsets.only(right:70.0,top:10.0),padding: EdgeInsets.only(top: 50.0),), Icon(Icons.edit, color: Colors.white,) , Container(padding: EdgeInsets.all(2.0),) , Text("Edit" , style: TextStyle(fontSize:   20.0 , color: Colors.white))],) , Container(margin: EdgeInsets.only(right:90.0) , padding: EdgeInsets.only(right: 500.0), ), Text(" Zaid" ,  style: TextStyle(fontSize:   20.0 , color: Colors.white) , ) , Container(margin: EdgeInsets.only(right:90.0) , padding: EdgeInsets.only(right: 500.0))],),),
+                  Container(height: 200.0, width: 150.0,child: Column(children: <Widget>[Row(children: <Widget>[  Container(margin: EdgeInsets.only(right:50.0,top:10.0),padding: EdgeInsets.only(top: 50.0),), Icon(Icons.edit, color: Colors.white,) , Container(padding: EdgeInsets.all(2.0),) , Text("Edit" , style: TextStyle(fontSize:   20.0 , color: Colors.white))],) , Container( ), Text(" Zaid" ,  style: TextStyle(fontSize:   20.0 , color: Colors.white) , ) , Container(margin: EdgeInsets.only(right:50.0) , padding: EdgeInsets.only(right: 40.0))  , Row(children: <Widget>[  Container(margin: EdgeInsets.only(right:41.0,top:10.0),padding: EdgeInsets.only(top: 67.0),), Icon(Icons.monetization_on, color: Colors.white,) , Container(padding: EdgeInsets.all(2.0),) , Text("Spent" , style: TextStyle(fontSize:   20.0 , color: Colors.white))],), Text("500" , style: TextStyle(fontSize:   20.0 , color: Colors.white))],),),
                 ],
               ),
 //
 
-              VerticalDivider(color: Colors.black,
-                thickness: 2, width: 10,
-              ),
+
 
             ],
           ),
