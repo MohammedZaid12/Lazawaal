@@ -24,67 +24,65 @@ class UserCardState extends State<UserCard> {
       var _resp = json.decode(response.body);
       return GetUserProfile.fromjson(_resp);
     } else {
-      // If the server did not return a 200 OK response, then throw an exception.
-      throw Exception('Failed to load album');
+      // If the server did not return a 200 OK response, then thRow an exception.
+      throw Exception('Failed to load Profile');
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      body: new ListView( children: <Widget>[
+      body: new ListView(children: <Widget>[
         Container(
-            color: Colors.deepPurpleAccent,
-            height: 200.0,
-            width: 55.0,
+          margin: EdgeInsets.only(top: 20.0, right: 20.0, left: 20.0),
+          height: 200.0,
+          width: 1.0,
+        decoration: BoxDecoration(
 
+            border: Border.all(
+              color: Colors.white,
+            ),
+            borderRadius: BorderRadius.all(Radius.circular(10)),
 
-              child: ListView(
+          gradient: LinearGradient(
+              begin: Alignment.topRight,
+              end: Alignment.bottomLeft,
+              colors: [Colors.lightBlueAccent, Colors.lightBlue  , Colors.purpleAccent])),
+//          color: Colors.lightBlueAccent,
+          child: ListView(
+            children: <Widget>[
+              Row(
+
                 children: <Widget>[
-                  Row(
-                    children: <Widget>[
-                      Column(children: <Widget>[
-                        Container(
-//                          padding:  EdgeInsets.only(right: 100.0),
-//                          margin: EdgeInsets.only(right: 300.0),
-                          child:userImage(50.0, 50.0),
-
-                        )
-                        ,
-
-                        Padding(padding: EdgeInsets.only(bottom :50.0 , right: 10.0),),
-                        Container(
-//                          padding:  EdgeInsets.only(right: 100.0),
-
-                          child:Row(
-                            children: <Widget>[
-                              Icon(
-                               Icons.loyalty
-                              ),
-                              Padding(padding: EdgeInsets.all(7.0),),
-                              Text("Loyalty Points")
-                            ],
-                          ),
-                        )
-                      ],),
-
-                    ],
-                  ),
-                  Column(),
-                  Column()
+                  Container(height: 200.0, width: 100.0,child:Column(children: <Widget>[Container(child: userImage(100.0, 100.0  ),),Container(padding: EdgeInsets.all(5.0),) , Row(children: <Widget>[Icon(Icons.loyalty , color: Colors.white,)  , Container(padding: EdgeInsets.only( right:3.0 ),) , Text("Loyality " , style: TextStyle(fontSize: 20.0 , color: Colors.white),),],) ,Container(padding: EdgeInsets.all(15.0),) ,Text("500", style: TextStyle(color: Colors.white , fontSize: 20.0)) ,], ) ),
+                  VerticalDivider(color: Colors.white,
+                    thickness: 2, width: 10,
+                ),
+                  Container(height: 25.0, width: 100.0,margin: EdgeInsets.only(top: 47.0) , child: Column(children: <Widget>[Row(children: <Widget>[Icon(Icons.score, color: Colors.white,) , Container(padding: EdgeInsets.all(2.0),) , Text("Score" , style: TextStyle(fontSize: 17.0 , color: Colors.white))],) ,Expanded(child:Text("500") , )],),),
+//                  VerticalDivider(color: Colors.white,),
+                  Container(height: 200.0, width: 150.0,child: Column(children: <Widget>[Row(children: <Widget>[  Container(margin: EdgeInsets.only(right:70.0,top:10.0),padding: EdgeInsets.only(top: 50.0),), Icon(Icons.edit, color: Colors.white,) , Container(padding: EdgeInsets.all(2.0),) , Text("Edit" , style: TextStyle(fontSize:   20.0 , color: Colors.white))],) , Container(margin: EdgeInsets.only(right:90.0) , padding: EdgeInsets.only(right: 500.0), ), Text(" Zaid" ,  style: TextStyle(fontSize:   20.0 , color: Colors.white) , ) , Container(margin: EdgeInsets.only(right:90.0) , padding: EdgeInsets.only(right: 500.0))],),),
                 ],
               ),
-            )
+//
+
+              VerticalDivider(color: Colors.black,
+                thickness: 2, width: 10,
+              ),
+
+            ],
+          ),
+        )
       ]),
     );
   }
 
   Widget userImage(height, margin) {
-    AssetImage assetImage = new AssetImage("images/userim.jpg");
+    AssetImage assetImage = new AssetImage("images/fwfwefdwef.png");
     Image image = new Image(
       image: assetImage,
       width: margin,
       height: height,
+
     );
     return Container(
       child: image,

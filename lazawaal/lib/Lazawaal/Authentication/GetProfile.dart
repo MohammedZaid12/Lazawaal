@@ -16,9 +16,10 @@ class GetUserProfile{
   final String guardianNic;
   final String DateOfBirth;
   final String points;
+  final String loyaltyPoints;
 
 
-  GetUserProfile({this.name,this.Id ,this.userId ,this.email , this.picture , this.phoneNumber , this.guardianName , this.guardianContact ,this.guardianNic ,this.points , this.income , this.DateOfBirth});
+  GetUserProfile({this.name,this.Id ,this.userId ,this.email , this.picture ,this.loyaltyPoints , this.phoneNumber , this.guardianName , this.guardianContact ,this.guardianNic ,this.points , this.income , this.DateOfBirth});
 
 
   factory GetUserProfile.fromjson(Map<String, dynamic> json){
@@ -35,6 +36,7 @@ class GetUserProfile{
       guardianNic: getString(json['guardian_nic']),
       DateOfBirth: json['dob'],
       points: json['points'],
+      loyaltyPoints: json['loyaltyPoints']
     );
 
 
