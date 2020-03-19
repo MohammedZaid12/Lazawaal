@@ -18,16 +18,16 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class UserGetProfileState extends State<UserGetProfile>{
 
-  Future  <List<GetUserProfile>> fetchUserProfile() async {
+  Future  <GetUserProfile> fetchUserProfile() async {
     SharedPreferences Prefrence = await SharedPreferences.getInstance();
     var response = await get(appUrls.getProfileUrl,
         headers: tokenWithHeader
             .authWithTokenHeaders(Prefrence.getString(cKeys.token)));
     if (response.statusCode == 200) {
       var _resp = json.decode(response.body);
-      return _resp.map((userprof)=>new GetUserProfile.fromjson(userprof)).toList();
+      return GetUserProfile.fromjson(_resp);
     } else {
-      // If the server did not return a 200 OK response, then thRow an exception.
+        // If the server did not return a 200 OK response, then thRow an exception.
       throw Exception('Failed to load Profile');
     }
   }
@@ -49,36 +49,33 @@ class UserGetProfileState extends State<UserGetProfile>{
     return ListView.builder(
         itemCount: data.length,
         itemBuilder: (context, index) {
-          return _tile(data[index].name, data[index].email, Icons.work);
+          return _tile(data[index].name, data[index].email);
         });
   }
 
   Widget prof(BuildContext context) {
-    return FutureBuilder<List<GetUserProfile>>(
+    return FutureBuilder<GetUserProfile>(
       future: fetchUserProfile(),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
-          List<GetUserProfile> data = snapshot.data;
+          var data  = snapshot.data;
           return profile(data);
         } else if (snapshot.hasError) {
           return Text("${snapshot.error}");
         }
         return CircularProgressIndicator();
       },
+
     );
   }
 
-  ListTile _tile(String title, String subtitle, IconData icon) => ListTile(
+  ListTile _tile(String title, String subtitle) => ListTile(
     title: Text(title,
         style: TextStyle(
           fontWeight: FontWeight.w500,
           fontSize: 20,
         )),
-    subtitle: Text(subtitle),
-    leading: Icon(
-      icon,
-      color: Colors.blue[500],
-    ),
+    leading:  Text(subtitle) ,
   );
 
 

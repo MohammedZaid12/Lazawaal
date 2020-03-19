@@ -84,14 +84,16 @@ class SignUpState extends State<LazawaalSignUp> {
             Padding(
               padding: EdgeInsets.all(15.0),
               child: cFunc.textFields("VALIDAION", (v) {
-                ;
+                print(v);
+
               }, "Name", "Name",
                   obscuretext: false, controller: UsernameController),
             ),
             Padding(
               padding: EdgeInsets.all(15.0),
               child: cFunc.textFields("a", (v) {
-                ;
+                print(v);
+
               }, "Email", "Email",
                   tType: TextInputType.emailAddress,
                   obscuretext: false,
@@ -100,7 +102,8 @@ class SignUpState extends State<LazawaalSignUp> {
             Padding(
               padding: EdgeInsets.all(15.0),
               child: cFunc.textFields("a", (v) {
-                ;
+                print(v);
+
               }, "Password", " Password",
                   obscuretext: true, controller: passController),
             ),
@@ -116,7 +119,8 @@ class SignUpState extends State<LazawaalSignUp> {
             Padding(
               padding: EdgeInsets.all(15.0),
               child: cFunc.textFields("a", (v) {
-                ;
+                print(v);
+
               }, "Phone Nuumber", "Phone Nuumber",
                   tType: TextInputType.phone,
                   obscuretext: false,
@@ -125,7 +129,8 @@ class SignUpState extends State<LazawaalSignUp> {
             Padding(
               padding: EdgeInsets.all(15.0),
               child: cFunc.textFields("a", (v) {
-                ;
+                print(v);
+
               }, "Income", "Income",
                   tType: TextInputType.number,
                   obscuretext: false,
@@ -134,7 +139,8 @@ class SignUpState extends State<LazawaalSignUp> {
             Padding(
               padding: EdgeInsets.all(15.0),
               child: cFunc.textFields("a", (v) {
-                ;
+                print(v);
+
               }, "Guardian Name", "Guardian Name",
                   tType: TextInputType.text,
                   obscuretext: false,
@@ -143,7 +149,8 @@ class SignUpState extends State<LazawaalSignUp> {
             Padding(
               padding: EdgeInsets.all(15.0),
               child: cFunc.textFields("a", (v) {
-                ;
+                print(v);
+
               }, "Guardian Nic", "Guardian Nic",
                   tType: TextInputType.number,
                   obscuretext: false,
@@ -152,7 +159,7 @@ class SignUpState extends State<LazawaalSignUp> {
             Padding(
               padding: EdgeInsets.all(15.0),
               child: cFunc.textFields("a", (v) {
-                ;
+                print(v);
               }, "Guardian Contact", "Guardian Contact",
                   tType: TextInputType.text,
                   obscuretext: false,

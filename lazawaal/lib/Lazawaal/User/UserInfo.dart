@@ -203,14 +203,14 @@ margin: EdgeInsets.all(20.0),
               Divider(color: Colors.black,),
               ListTile(
                 title: Text("Logout " , style: TextStyle(fontSize: 20.0 , fontWeight: FontWeight.w500),),
-                onTap: ()async{
+                onTap: () async{
                   SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.remove(cKeys.token);
     prefs.remove(cKeys.email);
-    prefs.remove("isLogin");
     print("destroyed");
-    Navigator.pushReplacement(context,
-    MaterialPageRoute(builder: (BuildContext ctx) => LazawaalLogin()));
+    await prefs.clear().then((value) =>Navigator.pushAndRemoveUntil(
+                      context, logout, (Route<dynamic> r) => false));
+
 
                 },
               )
@@ -226,7 +226,12 @@ margin: EdgeInsets.all(20.0),
       ]),
     );
   }
-
+  final PageRouteBuilder logout = new PageRouteBuilder(
+    pageBuilder: (BuildContext context, Animation<double> animation,
+        Animation<double> secondaryAnimation) {
+      return LazawaalLogin();
+    },
+  );
   Widget userImage(height, margin) {
     AssetImage assetImage = new AssetImage("images/fwfwefdwef.png");
     Image image = new Image(
@@ -238,4 +243,9 @@ margin: EdgeInsets.all(20.0),
       child: image,
     );
   }
+
+  goToLogin(){
+  return LazawaalLogin();
+  }
+
 }

@@ -9,6 +9,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'Authentication/LoginAuthentication.dart';
 
 class LazawaalLogin extends StatefulWidget {
+  LazawaalLogin({Key key}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() {
     return LoginState();
@@ -16,7 +18,7 @@ class LazawaalLogin extends StatefulWidget {
 }
 
 class LoginState extends State<LazawaalLogin> {
-  String email;
+  String  email;
   String password;
   String name;
   final _formKey = GlobalKey<FormState>();
@@ -39,7 +41,7 @@ class LoginState extends State<LazawaalLogin> {
       success(obj);
       print(_resp["success"]);
       print(obj);
-      return obj;
+      return getPrefIdUser();
     } else {
       print(_resp["error"]);
       print("login mein error");
@@ -97,10 +99,11 @@ class LoginState extends State<LazawaalLogin> {
 
 
                   this.doLogin(map, (LoginAuth log) {
-                    print(log.user_id);
-                    loginPrefrence.setString(cKeys.email, map["Email"]);
-                    loginPrefrence.setBool("isLogin", true);
-                    loginPrefrence.setString(cKeys.token, map["Password"]);
+                    print(log.email);
+                    print(log.token);
+                    loginPrefrence.setString(cKeys.email, log.email);
+//                   / loginPrefrence.setBool(cKeys., true);
+                    loginPrefrence.setString(cKeys.token, log.token);
 //                    loginPrefrence.setString(cKeys, log.email);
 
                   });
@@ -122,6 +125,8 @@ class LoginState extends State<LazawaalLogin> {
   String checkPreftoken;
   String checkPrefemail;
   bool checkPrefisLogin;
+
+
   getPrefIdUser() async {
 
 
@@ -131,7 +136,8 @@ class LoginState extends State<LazawaalLogin> {
       checkPrefemail = sharedPreferences.getString(cKeys.email);
       checkPrefisLogin = sharedPreferences.getBool("isLogin");
 
-      if (checkPreftoken == null && checkPrefemail==null && checkPrefisLogin==false) {
+      if (checkPreftoken == null && checkPrefemail==null) {
+
         print("check null");
         return false;
 
